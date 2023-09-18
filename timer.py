@@ -11,20 +11,31 @@ class Timer():
         
     def get_date(self):
         return self.date
+    def get_timer(self):
+        return self.timer
+    def set_second(self,modify):
+        self.second = modify
+    def set_minute(self,modify):
+        self.minute = modify
+    def set_hour(self,modify):
+        self.hour = modify
+    def set_date(self, modify):
+        self.date 
     def format_date(self):
-        if self.timer < 60:
-            self.second = self.timer
+        if self.get_timer() < 59:
+            self.set_second(self.get_timer())
         else:
-            self.second = self.timer % 60
-            self.minute = self.timer // 60
+            self.set_second(self.get_timer() % 60)
+            self.set_minute(self.get_timer() // 60)
             if self.minute > 59:
-                self.hour = self.timer // (60 * 60)
-                self.minute = int( self.timer // 60 % 60)
+                self.set_minute(self.get_timer() // 60 % 60)
+                self.set_hour(self.get_timer() // (60 * 60))
+        
         self.date = "{}:{}:{}".format(self.hour, self.minute, self.second)
         return self.get_date()
     def add_timer(self,accress  = 1):
-        self.timer = self.timer + accress
-        return  self.timer   
+        self.timer = self.get_timer() + accress
+        return  self.get_timer()   
     
     def get_hour(self):
         return self.hour

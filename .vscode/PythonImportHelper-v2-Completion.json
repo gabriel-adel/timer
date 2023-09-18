@@ -1,0 +1,52 @@
+[
+    {
+        "label": "Timer",
+        "importPath": "timer",
+        "description": "timer",
+        "isExtraImport": true,
+        "detail": "timer",
+        "documentation": {}
+    },
+    {
+        "label": "Clock",
+        "importPath": "kivy.clock",
+        "description": "kivy.clock",
+        "isExtraImport": true,
+        "detail": "kivy.clock",
+        "documentation": {}
+    },
+    {
+        "label": "App",
+        "importPath": "kivy.app",
+        "description": "kivy.app",
+        "isExtraImport": true,
+        "detail": "kivy.app",
+        "documentation": {}
+    },
+    {
+        "label": "Window",
+        "importPath": "kivy.core.window",
+        "description": "kivy.core.window",
+        "isExtraImport": true,
+        "detail": "kivy.core.window",
+        "documentation": {}
+    },
+    {
+        "label": "MyApp",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class MyApp(App):\n    def __init__(self):\n        super(MyApp, self).__init__()\n        self.screen_width = 0\n        self.screen_height = 0\n        self.timer = Timer()\n        pass\n    def build(self):\n        self.screen_width, self.screen_height = Window.size\n        Clock.schedule_interval(self.update_label, 1)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "Timer",
+        "kind": 6,
+        "importPath": "timer",
+        "description": "timer",
+        "peekOfCode": "class Timer():\n    def __init__(self):\n        self.timer=3590\n        self.start=True\n        self.sleep = 1\n        self.hour = 0\n        self.minute = 0\n        self.second = 0\n        self.date = \"00:00:00\"\n    def get_date(self):",
+        "detail": "timer",
+        "documentation": {}
+    }
+]
