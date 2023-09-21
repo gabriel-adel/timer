@@ -1,5 +1,22 @@
 [
     {
+        "label": "psycopg2",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "psycopg2",
+        "description": "psycopg2",
+        "detail": "psycopg2",
+        "documentation": {}
+    },
+    {
+        "label": "Screen",
+        "importPath": "screen",
+        "description": "screen",
+        "isExtraImport": true,
+        "detail": "screen",
+        "documentation": {}
+    },
+    {
         "label": "Timer",
         "importPath": "timer",
         "description": "timer",
@@ -24,20 +41,72 @@
         "documentation": {}
     },
     {
-        "label": "Window",
-        "importPath": "kivy.core.window",
-        "description": "kivy.core.window",
+        "label": "Db",
+        "importPath": "db",
+        "description": "db",
         "isExtraImport": true,
-        "detail": "kivy.core.window",
+        "detail": "db",
         "documentation": {}
     },
     {
-        "label": "MyApp",
+        "label": "time",
         "kind": 6,
-        "importPath": "main",
-        "description": "main",
-        "peekOfCode": "class MyApp(App):\n    def __init__(self):\n        super(MyApp, self).__init__()\n        self.screen_width = 0\n        self.screen_height = 0\n        self.timer = Timer()\n        pass\n    def build(self):\n        self.screen_width, self.screen_height = Window.size\n        Clock.schedule_interval(self.update_label, 1)",
-        "detail": "main",
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "subprocess",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "Observer",
+        "importPath": "watchdog.observers",
+        "description": "watchdog.observers",
+        "isExtraImport": true,
+        "detail": "watchdog.observers",
+        "documentation": {}
+    },
+    {
+        "label": "FileSystemEventHandler",
+        "importPath": "watchdog.events",
+        "description": "watchdog.events",
+        "isExtraImport": true,
+        "detail": "watchdog.events",
+        "documentation": {}
+    },
+    {
+        "label": "Db",
+        "kind": 6,
+        "importPath": "db",
+        "description": "db",
+        "peekOfCode": "class Db():\n    def __init__(self, host='localhost', databases='timer', user='postgres', password='adel666'):\n        self.url = ''\n        self.host = host \n        self.database = databases\n        self.user = user \n        self.password = password\n    def connection(self):\n        self.conn = psycopg2.connect(host=self.host, database=self.database, user = self.user, password=self.password)\n        return self.conn",
+        "detail": "db",
+        "documentation": {}
+    },
+    {
+        "label": "Screen",
+        "kind": 6,
+        "importPath": "screen",
+        "description": "screen",
+        "peekOfCode": "class Screen(App):\n    def __init__(self):\n        super(Screen, self).__init__()\n        self.timer = Timer()\n        self.start = False\n        db = Db()\n        db.connection()\n        sql = 'create table bla(id int not null)'\n        db.create_table(sql)\n    def build(self):",
+        "detail": "screen",
         "documentation": {}
     },
     {
@@ -45,8 +114,35 @@
         "kind": 6,
         "importPath": "timer",
         "description": "timer",
-        "peekOfCode": "class Timer():\n    def __init__(self):\n        self.timer=3590\n        self.start=True\n        self.sleep = 1\n        self.hour = 0\n        self.minute = 0\n        self.second = 0\n        self.date = \"00:00:00\"\n    def get_date(self):",
+        "peekOfCode": "class Timer():\n    def __init__(self):\n        self.timer=0\n        self.sleep = 1\n        self.hour = 0\n        self.minute = 0\n        self.second = 0\n        self.date = \"00:00:00\"\n    def get_date(self):\n        return self.date",
         "detail": "timer",
+        "documentation": {}
+    },
+    {
+        "label": "Watcher",
+        "kind": 6,
+        "importPath": "watcher",
+        "description": "watcher",
+        "peekOfCode": "class Watcher(FileSystemEventHandler):\n    def on_modified(self, event):\n        # if event.src_path == arquivo_a_monitorar:\n        if event.is_directory:\n            print('recompilando')\n            self.start()\n    def start(self):\n        subprocess.run(command_compilacao, shell=True)\nif __name__ == '__main__':\n    event_handler = Watcher()",
+        "detail": "watcher",
+        "documentation": {}
+    },
+    {
+        "label": "watch_dir",
+        "kind": 5,
+        "importPath": "watcher",
+        "description": "watcher",
+        "peekOfCode": "watch_dir = os.getcwd()\n# dirs_watch = \"C:\\Users\\Adel\\adel\\timer-to-work\\\"\ncommand_compilacao = 'python ./main.py'\nclass Watcher(FileSystemEventHandler):\n    def on_modified(self, event):\n        # if event.src_path == arquivo_a_monitorar:\n        if event.is_directory:\n            print('recompilando')\n            self.start()\n    def start(self):",
+        "detail": "watcher",
+        "documentation": {}
+    },
+    {
+        "label": "command_compilacao",
+        "kind": 5,
+        "importPath": "watcher",
+        "description": "watcher",
+        "peekOfCode": "command_compilacao = 'python ./main.py'\nclass Watcher(FileSystemEventHandler):\n    def on_modified(self, event):\n        # if event.src_path == arquivo_a_monitorar:\n        if event.is_directory:\n            print('recompilando')\n            self.start()\n    def start(self):\n        subprocess.run(command_compilacao, shell=True)\nif __name__ == '__main__':",
+        "detail": "watcher",
         "documentation": {}
     }
 ]

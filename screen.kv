@@ -1,0 +1,23 @@
+PageLayout:
+    BoxLayout:
+        orientation: 'horizontal'
+        Label:
+            id:horas
+            text: f"Tempo: {app.get_date()}"
+            size_hint: .2, .3 
+            
+        Button:
+            id:pause
+            text:'Pause'
+            size_hint: .2, .2 
+            on_press: app.button_pause()
+        Button:
+            id:start
+            text:'start'
+            size_hint:.2,.2
+            on_press: app.button_start()
+        Button:
+            id:stop
+            text:'stop'
+            size_hint:.2,.2
+            on_press: app.button_stop()

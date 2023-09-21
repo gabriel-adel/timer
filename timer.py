@@ -1,14 +1,13 @@
-
+# 3590
 class Timer():
     def __init__(self):
-        self.timer=3590
-        self.start=True
+        self.timer=0
         self.sleep = 1
         self.hour = 0
         self.minute = 0
         self.second = 0
         self.date = "00:00:00"
-        
+    
     def get_date(self):
         return self.date
     def get_timer(self):
@@ -36,7 +35,9 @@ class Timer():
     def add_timer(self,accress  = 1):
         self.timer = self.get_timer() + accress
         return  self.get_timer()   
-    
+    def zera_time(self):
+        self.timer = 0
+        self.date = "00:00:00"
     def get_hour(self):
         return self.hour
     def get_minute(self):
